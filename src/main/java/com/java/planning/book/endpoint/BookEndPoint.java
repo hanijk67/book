@@ -17,14 +17,14 @@ import java.util.Optional;
 public class BookEndPoint {
 
 
-    private BookService bookService;
+    private final BookService bookService;
 
     @Autowired
     public BookEndPoint(BookService bookService) {
         this.bookService = bookService;
     }
 
-    @GetMapping
+    @GetMapping("")
     public ResponseEntity<List<Book>> findBooks(
             @RequestParam(name = "from") Integer from,
             @RequestParam(name = "to") Integer to,

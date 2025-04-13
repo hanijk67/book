@@ -9,8 +9,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 
-@Getter
-@Setter
 @MappedSuperclass
 public abstract class BaseEntity<T> implements IEntity<T> {
 
@@ -21,4 +19,20 @@ public abstract class BaseEntity<T> implements IEntity<T> {
     @Column(name = "LASTMODIFYTIME")
     @UpdateTimestamp
     protected Date lastModifyDate;
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getLastModifyDate() {
+        return lastModifyDate;
+    }
+
+    public void setLastModifyDate(Date lastModifyDate) {
+        this.lastModifyDate = lastModifyDate;
+    }
 }
