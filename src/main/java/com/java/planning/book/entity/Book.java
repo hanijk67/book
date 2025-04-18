@@ -6,17 +6,10 @@ import org.hibernate.id.enhanced.SequenceStyleGenerator;
 
 @Entity
 @Table(name = "BOOK")
-@GenericGenerator(name = "sequence_generator",
-        strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-        parameters = {
-                @org.hibernate.annotations.Parameter(name = SequenceStyleGenerator.SEQUENCE_PARAM, value = "SEQ_BOOK"),
-                @org.hibernate.annotations.Parameter(name = SequenceStyleGenerator.OPT_PARAM, value = "pooled-lo"),
-                @org.hibernate.annotations.Parameter(name = SequenceStyleGenerator.INITIAL_PARAM, value = "1000"),
-                @org.hibernate.annotations.Parameter(name = SequenceStyleGenerator.INCREMENT_PARAM, value = "50")
-        }
-)
 public class Book extends BaseEntity<Long> {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "BOOKS_SEQ")
+    @SequenceGenerator(name = "BOOKS_SEQ", sequenceName = "SEQUENCE_BOOKS")
     @Id
     private Long id;
     @Column(name = "TITLE")

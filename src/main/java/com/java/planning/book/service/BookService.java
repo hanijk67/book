@@ -70,7 +70,7 @@ public class BookService {
     }
 
     public List<Book> findByParam(BookSearch vi) {
-        return bookRepository.findByParams(vi, PageRequest.of(vi.from(), vi.to()));
+        return bookRepository.findByTitleLikeAndYearAfter(vi.title(), vi.year(), PageRequest.of(vi.from(), vi.to()));
     }
 
     public void delete(Long id) {

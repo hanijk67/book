@@ -13,6 +13,9 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-    @Query("select b from Book b where b.title like :#{#bookVi.title()} and b.year > :#{#bookVi.year()}")
+    @Query("select b from Book b where b.title like :#{#bookVi.title()}")
     List<Book> findByParams(@Param("bookVi") BookSearch bookSearch, Pageable pageable);
+
+    @Query("SELECT b FROM Book b WHERE b.title LIKE CONCAT('%', :title, '%') AND b.year > :year")
+    List<Book> findByTitleLikeAndYearAfter(@Param("title") String title, @Param("year") int year, Pageable pageable);
 }
